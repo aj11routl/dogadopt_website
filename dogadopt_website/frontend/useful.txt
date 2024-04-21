@@ -1,0 +1,4 @@
+#FFCC00 - yellow
+#FAF5E6 - pinkish highlight
+#FAF9F6 - off white background
+#FFFFFF - white
