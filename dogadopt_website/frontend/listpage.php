@@ -24,9 +24,6 @@
                     <a href="listpage.html">Our dogs</a>
                     <a href="#contact">Info</a>
                     <a href="#about">Fun</a>
-                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                        <i class="fa fa-bars"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -36,14 +33,11 @@
             <div class="left">
                 <div class="bannersection">
                     <div>
-                        <h3black>Welcome to DogAdopt</h3black>
-
-                        <p>Our mission at DogAdopt is simple.</p>
-                        <p>We aim to rehome as many sheltered dogs as possible to new loving homes.</p>
+                        <h3black>Our dogs</h3black>
+                        <p>Look through our list of dogs and pups</p>
                         <br>
-                        <p>Start the adoption process now by applying!</p>
-                    </div>
-                    <div class="yellow-button">Apply now</div>    
+                        
+                    </div>   
                 </div>
             </div>
             <div class="right">
@@ -96,7 +90,7 @@
                 <div class="wrapper">
                     <div class="left">
                         <ul>
-                            <li><a href="">Home</a></li>
+                            <li><a href="index.html">Home</a></li>
                             <li><a href="listpage.html">Our dogs list</a></li>
                             <li><a href="#facts">Dog facts</a></li>
                         </ul>
