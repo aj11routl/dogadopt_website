@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="content">
+    <div class="contentyellow">
         <div class="banner">
             <div class="left">
                 <div class="bannersection">
@@ -36,6 +36,24 @@
                         <h3black>Our dogs</h3black>
                         <p>Look through our list of dogs and pups</p>
                         <br>
+                        <?php  
+                            $ch = curl_init();
+                                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                                curl_setopt($ch,CURLOPT_URL,
+                                        "http://localhost/dogadopt_website/backend/my_backend/index.php/dog/breed/list");
+                                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                                #curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13");
+                                $data = curl_exec($ch);
+                                curl_close($ch);
+                            $data = json_decode($data, true);
+                            $breeds_list = array();
+                            foreach ($data as $o) {
+                                array_push($breeds_list, $o['breed']);                                
+                            }
+                        foreach($breeds_list as $x) {
+                            print("$x");
+                        }
+                        ?> 
                         
                     </div>   
                 </div>
@@ -49,35 +67,26 @@
                 </div>
             </div>
         </div>
-        <div class="section1">
-            <div class="card" id="cardfill">
-                <div class="cardimage" style="background-image: url(schnauzer-cardimage.jpg);">
+        <div class="section2">
+            <h3black>Search the database</h3black>
+            <hr>
+            <div>
+                <label>
+                    Multi-select
+                    <input mbsc-input id="my-input" data-dropdown="true" data-tags="true" />
+                </label>
+                <div class="wrapper">
+                    <div class="optionbutton">Option 1</div>
+                                        <div class="optionbutton">Option 1</div>
+
                 </div>
-                <div class="cardcontent">
-                    <div class="top">
-                        <h3black>See our dogs</h3black>
-                        <p class="textgrey">See if any of our dogs or pups are right for you</p>
-                    </div>
-                    <div class="bottom">
-                        <div class="nav-button">
-                            See list
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" id="cardfill">
-                <div class="cardimage" style="background-image: url(cardimage.jpg);">
-                </div>
-                <div class="cardcontent">
-                    <div class="top">
-                        <h3black>Fun facts</h3black>
-                        <p class="textgrey">Play a game and generate some fun facts about dogs!</p>
-                    </div>
-                    <div class="bottom">
-                        <div class="nav-button">
-                            Play now
-                        </div>
-                    </div>
+                
+                <div>
+                    <select id="multiple-select" multiple>
+                        <option value="1">Breed</option>
+                        <option value="2">Colour</option>
+                        <option value="3">Sex</option>
+                    </select>
                 </div>
             </div>
         </div>

@@ -30,6 +30,5 @@ if (isset($uri[7])) {
     $strMethodName = $strMethodName . $uri[7];
 }
 $strMethodName = $strMethodName . 'Action';
-print_r("$strMethodName");
 $objFeedController->{$strMethodName}();
 ?>

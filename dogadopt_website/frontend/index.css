@@ -99,7 +99,6 @@ body {
 #header-wrapper {
     min-height: 110px;
     overflow: hidden;
-
 }
 
 #logo-box {
@@ -207,6 +206,11 @@ body {
     padding: 0px;
 }
 
+.contentyellow {
+    background-color: var(--yellow);
+    padding: 0px;
+}
+
 .banner {
     width: 100%;
     background-image: url(background.jpg);
@@ -260,6 +264,7 @@ body {
     height: 450px;
     padding: 0px;
     margin: 10px;
+    background-color: white;
     justify-content: center;
     align-content: center;
 }
@@ -315,14 +320,41 @@ body {
 .section2 {
     width: 100%;
     background-color: var(--yellow);
+    min-height: 350px;
     padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 40px;
     position: relative;
+    text-indent: 10px;
 }
 
-/* FORMS */
+/* FORMS AND BUTTONS */
 /* ----------------------------- */
 
+.optionbutton {
+    align-content: center;
+    text-align: center;
+    color: white;
+    background-color: black;
+    border: 3px solid black;
+    box-shadow: none;
+    padding: 3px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-height: 35px;
+    max-height: 45px;
+    overflow: hidden;
+    margin: 10px;
+}
 
+.optionbutton:hover {
+    opacity: 0.9;
+}
 
 /* FOOTER */
 /* ----------------------------- */

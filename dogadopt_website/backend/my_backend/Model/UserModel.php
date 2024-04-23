@@ -30,12 +30,22 @@ class UserModel extends Database
     
     public function getDogsByBreed($breed)
     {
-        return $this->select("SELECT * FROM dogs WHERE breed = $breed");
+        return $this->select("SELECT * FROM dogs WHERE breed = " . $breed);
     }
     
     public function getAllDogBreeds()
     {
         return $this->select("SELECT breed FROM dogs ORDER BY breed ASC");
+    }
+    
+    public function getDogsByColour($colour)
+    {
+        return $this->select("SELECT * FROM dogs WHERE colour = " . $colour);
+    }
+    
+    public function getAllDogColours()
+    {
+        return $this->select("SELECT colour FROM dogs ORDER BY colour ASC");
     }
     
     public function getDogsByBreedAndSex($breed, $sex)
