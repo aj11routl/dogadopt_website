@@ -36,24 +36,6 @@
                         <h3black>Our dogs</h3black>
                         <p>Look through our list of dogs and pups</p>
                         <br>
-                        <?php  
-                            $ch = curl_init();
-                                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                                curl_setopt($ch,CURLOPT_URL,
-                                        "http://localhost/dogadopt_website/backend/my_backend/index.php/dog/breed/list");
-                                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-                                #curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13");
-                                $data = curl_exec($ch);
-                                curl_close($ch);
-                            $data = json_decode($data, true);
-                            $breeds_list = array();
-                            foreach ($data as $o) {
-                                array_push($breeds_list, $o['breed']);                                
-                            }
-                        foreach($breeds_list as $x) {
-                            print("$x");
-                        }
-                        ?> 
                         
                     </div>   
                 </div>
@@ -68,25 +50,117 @@
             </div>
         </div>
         <div class="section2">
-            <h3black>Search the database</h3black>
-            <hr>
-            <div>
-                <label>
-                    Multi-select
-                    <input mbsc-input id="my-input" data-dropdown="true" data-tags="true" />
-                </label>
-                <div class="wrapper">
-                    <div class="optionbutton">Option 1</div>
-                                        <div class="optionbutton">Option 1</div>
-
-                </div>
+        <?php  
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch,CURLOPT_URL,
+                        "http://localhost/dogadopt_website/backend/my_backend/index.php/dog/breed/list");
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                                #curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13");
+            $breeds_data = curl_exec($ch);
+            curl_setopt($ch,CURLOPT_URL,
+                        "http://localhost/dogadopt_website/backend/my_backend/index.php/dog/colour/list");
+            $colours_data = curl_exec($ch);
+            curl_close($ch);
+            $breeds_data = json_decode($breeds_data, true);
+            $colours_data = json_decode($colours_data, true);
+            
+            $breeds_list = array();
+            $colours_list = array();
+            foreach ($breeds_data as $o) {
+                array_push($breeds_list, $o['breed']);                                
+            }
+            foreach ($colours_data as $o) {
+                array_push($colours_list, $o['colour']);                                
+            }
+            ?> 
+            <script>
+                function refreshValues(){
+                    
+                    var select = document.getElementById("select-dropdown");
+                    var options = [];
+                        
+                    var e = document.getElementById("options-dropdown");
+                    
+                    var value = e.value;
+                    var text = e.options[e.selectedIndex].text;
+                    
+                    switch (text) {
+                        case "Breed":
+                            options=<?php echo json_encode($breeds_list) ?>;
+                            break;
+                        case "Colour":
+                            options=<?php echo json_encode($colours_list) ?>;
+                            break;
+                        case "Sex":
+                            options=["Male", "Female"];
+                            break;
+                    }
+                    
+                    for (var i = 0; i <= select.length; i++) {
+                        select.remove(select.i);
+                    }
+                    
+                    for(var i = 0; i < options.length; i++) {
+                        var opt = options[i];
+                        var el = document.createElement("option");
+                        el.textContent = opt;
+                        el.value = opt;
+                        select.appendChild(el);
+                    }
+                }
                 
+                function searchDogs(){
+                    
+                }
+            </script>
+            <h3black>Search the database</h3black>
+            <div class="wrapper" id="listform-wrapper">
                 <div>
-                    <select id="multiple-select" multiple>
-                        <option value="1">Breed</option>
-                        <option value="2">Colour</option>
-                        <option value="3">Sex</option>
+                    <label>Search by</label>
+                    <select class="form-select" id="options-dropdown" onChange="refreshValues()" aria-label="Default select example">
+                      <option selected>Search by...</option>
+                      <option value="1">Breed</option>
+                      <option value="2">Sex</option>
+                      <option value="3">Colour</option>
                     </select>
+                    <label>Search for</label>
+                    <select class="form-select" id="select-dropdown" onchange="showDogs" aria-label="Default select example">
+                        <option label="Select.."></option>
+                    </select>
+                </div>
+            </div>
+            <button class="optionbutton">Search</button>
+        </div>
+        <div class="section1">
+            <div class="card" id="cardfill">
+                <div class="cardimage" style="background-image: url(schnauzer-cardimage.jpg);">
+                </div>
+                <div class="cardcontent">
+                    <div class="top">
+                        <h3black>See our dogs</h3black>
+                        <p class="textgrey">See if any of our dogs or pups are right for you</p>
+                    </div>
+                    <div class="bottom">
+                        <div class="nav-button">
+                            See list
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="cardfill">
+                <div class="cardimage" style="background-image: url(cardimage.jpg);">
+                </div>
+                <div class="cardcontent">
+                    <div class="top">
+                        <h3black>Fun facts</h3black>
+                        <p class="textgrey">Play a game and generate some fun facts about dogs!</p>
+                    </div>
+                    <div class="bottom">
+                        <div class="nav-button">
+                            Play now
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

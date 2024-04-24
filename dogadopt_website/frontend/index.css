@@ -320,7 +320,7 @@ body {
 .section2 {
     width: 100%;
     background-color: var(--yellow);
-    min-height: 350px;
+    min-height: 300px;
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
@@ -339,11 +339,11 @@ body {
     background-color: black;
     border: 3px solid black;
     box-shadow: none;
-    padding: 3px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
     font-size: 14px;
-    border-radius: 5px;
+    border-radius: 25px;
     margin-left: 10px;
     margin-right: 10px;
     min-height: 35px;
@@ -354,6 +354,18 @@ body {
 
 .optionbutton:hover {
     opacity: 0.9;
+}
+
+.form-select {
+    min-width: 150px;
+    padding: 15px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#listform-wrapper {
+    margin: 30px;
 }
 
 /* FOOTER */
