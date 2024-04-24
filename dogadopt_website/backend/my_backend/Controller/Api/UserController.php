@@ -165,12 +165,11 @@ class UserController extends BaseController
         if (strtoupper($requestMethod) == 'GET') {
             try {
                 $model = new UserModel();
-                $colour = 'asdsd';
+                $colour = '';
 
                 if (isset($arrQueryStringParams['dogcolour']) && $arrQueryStringParams['dogcolour']) {
                     $colour = $arrQueryStringParams['dogcolour'];
                 }
-                print_r("$colour");
                 $arrDogs = $model->getDogsByColour($colour);
                 $responseData = json_encode($arrDogs);
                 
@@ -246,7 +245,7 @@ class UserController extends BaseController
         if (strtoupper($requestMethod) == 'GET') {
             try {
                 $model = new UserModel();
-                $breed = 'asdsad';
+                $breed = '';
                 if (isset($arrQueryStringParams['dogbreed']) && $arrQueryStringParams['dogbreed']) {
                     $breed = $arrQueryStringParams['dogbreed'];
                 }

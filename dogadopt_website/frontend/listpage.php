@@ -49,6 +49,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="section2">
         <?php  
             $ch = curl_init();
@@ -73,15 +74,13 @@
             foreach ($colours_data as $o) {
                 array_push($colours_list, $o['colour']);                                
             }
-            ?> 
+            ?>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script>
                 function refreshValues(){
-                    
                     var select = document.getElementById("select-dropdown");
                     var options = [];
-                        
                     var e = document.getElementById("options-dropdown");
-                    
                     var value = e.value;
                     var text = e.options[e.selectedIndex].text;
                     
@@ -110,10 +109,41 @@
                     }
                 }
                 
-                function searchDogs(){
+                function generateCard(name, breed, colour, sex) {
+                    const section = document.getElementById("section1");
+                    section.innerHTML = <>
+                }
+                
+                function createCards() {
+                    const a = document.getElementById("options-dropdown");
+                    var option_text = a.options[a.selectedIndex].text;
+                        
+                    const b = document.getElementById("select-dropdown");
+                    var selected_text = b.options[b.selectedIndex].text;
                     
+                    if (option_text != "" && selected_text != "") {
+                        var dogs_list = [];
+
+                            $.ajax({
+                                url:"get-list.php",    //the page containing php script
+                                type: "post",    //request type,
+                                dataType: 'json',                            
+                                data: {option: option_text, selection: selected_text},
+                                success:function(result){
+                                    dogs_list = result;
+                                    document.write(dogs_list);
+                            }
+                        });
+                        
+                        dogs_list.forEach() {
+                            
+                        }
+                    }
                 }
             </script>
+
+
+            
             <h3black>Search the database</h3black>
             <div class="wrapper" id="listform-wrapper">
                 <div>
@@ -125,14 +155,14 @@
                       <option value="3">Colour</option>
                     </select>
                     <label>Search for</label>
-                    <select class="form-select" id="select-dropdown" onchange="showDogs" aria-label="Default select example">
+                    <select class="form-select" id="select-dropdown" onchange="searchDogs()" aria-label="Default select example">
                         <option label="Select.."></option>
                     </select>
                 </div>
             </div>
-            <button class="optionbutton">Search</button>
+            <button class="optionbutton" onclick="createCards()">Search</button>
         </div>
-        <div class="section1">
+        <div class="section1" id="yeah">
             <div class="card" id="cardfill">
                 <div class="cardimage" style="background-image: url(schnauzer-cardimage.jpg);">
                 </div>

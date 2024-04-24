@@ -30,7 +30,7 @@ class UserModel extends Database
     
     public function getDogsByBreed($breed)
     {
-        return $this->select("SELECT * FROM dogs WHERE breed = " . $breed);
+        return $this->select("SELECT * FROM dogs WHERE breed = '" . $breed . "'");
     }
     
     public function getAllDogBreeds()
@@ -40,7 +40,7 @@ class UserModel extends Database
     
     public function getDogsByColour($colour)
     {
-        return $this->select("SELECT * FROM dogs WHERE colour = " . $colour);
+        return $this->select("SELECT * FROM dogs WHERE colour = '" . $colour . "'");
     }
     
     public function getAllDogColours()
