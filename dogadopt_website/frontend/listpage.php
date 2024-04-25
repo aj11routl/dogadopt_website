@@ -34,9 +34,8 @@
                 <div class="bannersection">
                     <div>
                         <h3black>Our dogs</h3black>
-                        <p>Look through our list of dogs and pups</p>
+                        <p>Look through our list of dogs</p>
                         <br>
-                        
                     </div>   
                 </div>
             </div>
@@ -77,11 +76,12 @@
             ?>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script>
-                function refreshValues(){
+                function refreshValues() {
+                    console.log("HELLOOOO");
+                    
                     var select = document.getElementById("select-dropdown");
                     var options = [];
                     var e = document.getElementById("options-dropdown");
-                    var value = e.value;
                     var text = e.options[e.selectedIndex].text;
                     
                     switch (text) {
@@ -98,6 +98,8 @@
                     
                     for (var i = 0; i <= select.length; i++) {
                         select.remove(select.i);
+                        console.log(i.toString());
+                        console.log("here select i");
                     }
                     
                     for(var i = 0; i < options.length; i++) {
@@ -108,41 +110,87 @@
                         select.appendChild(el);
                     }
                 }
-                
-                function generateCard(name, breed, colour, sex) {
-                    const section = document.getElementById("section1");
-                    section.innerHTML = <>
-                }
+            </script>
+            <script>
                 
                 function createCards() {
+                    console.log("point 1");
                     const a = document.getElementById("options-dropdown");
                     var option_text = a.options[a.selectedIndex].text;
-                        
                     const b = document.getElementById("select-dropdown");
                     var selected_text = b.options[b.selectedIndex].text;
+                    const cardContainer = document.getElementById('card-container');
                     
+                    cardContainer.innerHTML = "";
+                                        console.log("point 1");
                     if (option_text != "" && selected_text != "") {
                         var dogs_list = [];
-
+                            
+                        myarr = [];
                             $.ajax({
                                 url:"get-list.php",    //the page containing php script
                                 type: "post",    //request type,
-                                dataType: 'json',                            
+                                dataType: 'json',
+                                async: true,
                                 data: {option: option_text, selection: selected_text},
                                 success:function(result){
-                                    dogs_list = result;
-                                    document.write(dogs_list);
+                                    result = result.slice(1,-1);
+                                    var index = 0;
+                                    var index2 = 0;
+                                    
+                                    
+                                    for(let i = 0; i <= result.length; i++) {
+                                        var character = result[i];
+                                        if (character == "{") {
+                                            index = i;
+                                        }
+                                        if (character == "}") {
+                                            index2 = i;
+                                            if (index < i) {
+                                                myarr.push(JSON.parse(result.substring(index, index2+1)));
+                                            }
+                                        }
+                                    }
                             }
+                        }).then(function() {
+                                for(let i = 0; i <= myarr.length; i++) {
+                                    var obj = myarr[i];
+                                    var s = "";
+                                    if (obj['sex'] == 1) {
+                                        s = "Male";
+                                    }
+                                    if (obj['sex'] == 2) {
+                                        s = "Female";
+                                    }
+                                    var card = createCard(obj['name'], obj['breed'], obj['colour'], s);
+                                    cardContainer.appendChild(card);
+                                }
                         });
-                        
-                        dogs_list.forEach() {
-                            
-                        }
                     }
                 }
+                
+                function createCard(title, breedname, colourname, sex) {
+                            const card = document.createElement('div');
+                            card.classList.add('list-card');
+
+                            const cardTitle = document.createElement('h2');
+                            cardTitle.textContent = title;
+
+                            const cardBreed = document.createElement('p');
+                            cardBreed.textContent = breedname;
+                            const cardColour = document.createElement('p');
+                            cardColour.textContent = colourname;
+                            const cardSex = document.createElement('p');
+                            cardSex.textContent = sex;
+
+                            card.appendChild(cardTitle);
+                            card.appendChild(cardBreed);
+                            card.appendChild(cardColour);
+                            card.appendChild(cardSex);
+                            
+                            return card;
+                        }
             </script>
-
-
             
             <h3black>Search the database</h3black>
             <div class="wrapper" id="listform-wrapper">
@@ -155,43 +203,16 @@
                       <option value="3">Colour</option>
                     </select>
                     <label>Search for</label>
-                    <select class="form-select" id="select-dropdown" onchange="searchDogs()" aria-label="Default select example">
+                    <select class="form-select" id="select-dropdown" aria-label="Default select example">
                         <option label="Select.."></option>
                     </select>
                 </div>
             </div>
-            <button class="optionbutton" onclick="createCards()">Search</button>
+            <button class="searchbutton" onclick="createCards()" id="searchbtn">Search</button>
+
         </div>
-        <div class="section1" id="yeah">
-            <div class="card" id="cardfill">
-                <div class="cardimage" style="background-image: url(schnauzer-cardimage.jpg);">
-                </div>
-                <div class="cardcontent">
-                    <div class="top">
-                        <h3black>See our dogs</h3black>
-                        <p class="textgrey">See if any of our dogs or pups are right for you</p>
-                    </div>
-                    <div class="bottom">
-                        <div class="nav-button">
-                            See list
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" id="cardfill">
-                <div class="cardimage" style="background-image: url(cardimage.jpg);">
-                </div>
-                <div class="cardcontent">
-                    <div class="top">
-                        <h3black>Fun facts</h3black>
-                        <p class="textgrey">Play a game and generate some fun facts about dogs!</p>
-                    </div>
-                    <div class="bottom">
-                        <div class="nav-button">
-                            Play now
-                        </div>
-                    </div>
-                </div>
+        <div class="list-section" id="card-container">
+            <div class="list-card">
             </div>
         </div>
     </div>

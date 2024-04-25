@@ -329,10 +329,38 @@ body {
     text-indent: 10px;
 }
 
+.list-section {
+    width: 100%;
+    background-color: white;
+    min-height: 300px;
+    padding: 10px;
+    position: relative;
+    flex: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
+.list-card {
+    box-shadow: 0 0 3px grey;
+    border-radius: 8px;
+    width: 320px;
+    min-width: 320px;
+    min-height: 450px
+    max-width: 320px;
+    max-height: 450px;
+    padding: 0px;
+    margin: 10px;
+    background-color: white;
+    justify-content: center;
+}
+
 /* FORMS AND BUTTONS */
 /* ----------------------------- */
 
-.optionbutton {
+.searchbutton {
     align-content: center;
     text-align: center;
     color: white;
@@ -352,7 +380,7 @@ body {
     margin: 10px;
 }
 
-.optionbutton:hover {
+.searchbutton:hover {
     opacity: 0.9;
 }
 
