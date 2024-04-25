@@ -170,23 +170,30 @@
                 }
                 
                 function createCard(title, breedname, colourname, sex) {
-                            const card = document.createElement('div');
-                            card.classList.add('list-card');
+                    const card = document.createElement('div');
+                    const cardTitleBox = document.createElement('div');
+                    const cardContentBox = document.createElement('div');
+                    card.appendChild(cardTitleBox);
+                    card.appendChild(cardContentBox);
+                    
+                    card.classList.add('list-card');
+                    cardTitleBox.classList.add('list-card-title');
+                    cardContentBox.classList.add('list-card-content');
+                    
+                    const cardTitle = document.createElement('h2');
+                    cardTitle.textContent = title;
 
-                            const cardTitle = document.createElement('h2');
-                            cardTitle.textContent = title;
+                    const cardBreed = document.createElement('p');
+                    cardBreed.textContent = "Breed: " + breedname;
+                    const cardColour = document.createElement('p');
+                    cardColour.textContent = "Coat: " + colourname;
+                    const cardSex = document.createElement('p');
+                    cardSex.textContent = "Sex: " + sex;
 
-                            const cardBreed = document.createElement('p');
-                            cardBreed.textContent = breedname;
-                            const cardColour = document.createElement('p');
-                            cardColour.textContent = colourname;
-                            const cardSex = document.createElement('p');
-                            cardSex.textContent = sex;
-
-                            card.appendChild(cardTitle);
-                            card.appendChild(cardBreed);
-                            card.appendChild(cardColour);
-                            card.appendChild(cardSex);
+                    cardTitleBox.appendChild(cardTitle);
+                    cardContentBox.appendChild(cardBreed);
+                    cardContentBox.appendChild(cardColour);
+                    cardContentBox.appendChild(cardSex);
                             
                             return card;
                         }
@@ -212,8 +219,7 @@
 
         </div>
         <div class="list-section" id="card-container">
-            <div class="list-card">
-            </div>
+            <!--- displays list of dogs on search 'createCards()' -->
         </div>
     </div>
 

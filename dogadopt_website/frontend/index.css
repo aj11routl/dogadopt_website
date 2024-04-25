@@ -346,15 +346,31 @@ body {
 .list-card {
     box-shadow: 0 0 3px grey;
     border-radius: 8px;
-    width: 320px;
-    min-width: 320px;
+    min-width: 400px;
     min-height: 450px
-    max-width: 320px;
+    max-width: 700px;
     max-height: 450px;
-    padding: 0px;
-    margin: 10px;
+    margin: 30px;
     background-color: white;
+    position: relative;
+}
+
+.list-card-title {
+    border-radius: 8px 8px 0px 0px;
+    padding: 5px;
+    background-color: var(--charcoal);
+    color: var(--yellow);
+    align-content: center;
     justify-content: center;
+    text-align: center;
+    align-items: center;
+    display: block;
+}
+
+.list-card-content {
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: left;
 }
 
 /* FORMS AND BUTTONS */
