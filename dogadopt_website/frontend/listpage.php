@@ -64,14 +64,18 @@
             curl_close($ch);
             $breeds_data = json_decode($breeds_data, true);
             $colours_data = json_decode($colours_data, true);
-            
             $breeds_list = array();
             $colours_list = array();
-            foreach ($breeds_data as $o) {
-                array_push($breeds_list, $o['breed']);                                
+            
+            if ($breeds_data != null) {
+                foreach ($breeds_data as $o) {
+                    array_push($breeds_list, $o['breed']);                                
+                }
             }
-            foreach ($colours_data as $o) {
-                array_push($colours_list, $o['colour']);                                
+            if ($colours_data != null) {
+                foreach ($colours_data as $o) {
+                    array_push($colours_list, $o['colour']);                                
+                }
             }
             ?>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -114,15 +118,13 @@
             <script>
                 
                 function createCards() {
-                    console.log("point 1");
                     const a = document.getElementById("options-dropdown");
                     var option_text = a.options[a.selectedIndex].text;
                     const b = document.getElementById("select-dropdown");
                     var selected_text = b.options[b.selectedIndex].text;
                     const cardContainer = document.getElementById('card-container');
-                    
                     cardContainer.innerHTML = "";
-                                        console.log("point 1");
+                    
                     if (option_text != "" && selected_text != "") {
                         var dogs_list = [];
                             
@@ -138,7 +140,6 @@
                                     var index = 0;
                                     var index2 = 0;
                                     
-                                    
                                     for(let i = 0; i <= result.length; i++) {
                                         var character = result[i];
                                         if (character == "{") {
@@ -153,18 +154,25 @@
                                     }
                             }
                         }).then(function() {
-                                for(let i = 0; i <= myarr.length; i++) {
-                                    var obj = myarr[i];
-                                    var s = "";
-                                    if (obj['sex'] == 1) {
-                                        s = "Male";
+                                try {
+                                    for(let i = 0; i <= myarr.length; i++) {
+                                        var obj = myarr[i];
+                                        var s = "";
+                                        if (obj['sex'] == 1) {
+                                            s = "Male";
+                                        }
+                                        if (obj['sex'] == 2) {
+                                            s = "Female";
+                                        }
+                                        var card = createCard(obj['name'], obj['breed'], obj['colour'], s);
+                                        cardContainer.appendChild(card);
+                                        cardContainer.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
                                     }
-                                    if (obj['sex'] == 2) {
-                                        s = "Female";
-                                    }
-                                    var card = createCard(obj['name'], obj['breed'], obj['colour'], s);
-                                    cardContainer.appendChild(card);
-                                }
+                                } catch {
+                                    var errorDisplay = createErrorDisplay();
+                                    cardContainer.appendChild(errorDisplay);
+                            }
+                                
                         });
                     }
                 }
@@ -195,8 +203,15 @@
                     cardContentBox.appendChild(cardColour);
                     cardContentBox.appendChild(cardSex);
                             
-                            return card;
-                        }
+                    return card;
+                }
+                
+                function createErrorDisplay() {
+                    const box = document.createElement('div');
+                    const title = document.createElement('h2black');
+                    title.textContent = "Sorry..."
+                    box.appendChild(title);
+                }
             </script>
             
             <h3black>Search the database</h3black>

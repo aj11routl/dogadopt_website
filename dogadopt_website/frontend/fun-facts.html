@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rehoming and Rescue | DogAdopt</title>
+<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="header">
+        <div id="header-wrapper">
+            <a href="index.html">
+                <div id="logo-box">
+                    <div id="logo">
+                    </div>
+                    <h2 style="float: left; align-content: center">WebsiteName.org</h2>
+                </div>
+            </a>
+            <div id="topnav-box">        
+                <div class="topnav">
+                    <div class="nav-button" href="">
+                        Apply
+                    </div>
+                    <a href="#home" class="active">Home</a>
+                    <a href="listpage.html">Our dogs</a>
+                    <a href="#contact">Info</a>
+                    <a href="#about">Fun</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="section2">
+            <div class="center-section">
+                <h4>Fun facts</h4>
+                <p>Click the button to generate a fun fact about dogs!</p>
+                <button class="large-button" onclick="getFact()">
+                    Generate
+                </button>
+            </div>
+            <div id="fact-display-section">
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script>
+                    function getFact() {
+                        var fact = null;
+                        const display = document.getElementById('fact-display-section');
+                        const caption = document.createElement('p');
+                        const text = document.createElement('h3black');
+                        display.innerHTML = "";
+                        console.log('yay start');
+                        try {
+                            console.log('try');
+                            $.ajax({
+                                    url:"get-fact.php",    //the page containing php script
+                                    type: "get",    //request type,
+                                    dataType: 'json',
+                                    async: true,
+                                    success:function(result){
+                                        fact = result['facts'];
+                                }
+                            }).then(function() {
+                                console.log('then');
+                                if (fact != null) {
+                                    caption.textContent = "Did you know..?";
+                                    
+                                    text.textContent = fact;
+                                    
+                                }
+                            });
+                        } catch {
+                            console.log('catch');
+                            text.textContent = "Sorry.. something went wrong.";
+                        }
+                            display.appendChild(caption);
+                            display.appendChild(text)
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="wrapper">
+            <div class="left">
+                    <h3>Sitemap</h3>
+                <div class="wrapper">
+                    <div class="left">
+                        <ul>
+                            <li><a href="">Home</a></li>
+                            <li><a href="listpage.html">Our dogs list</a></li>
+                            <li><a href="#facts">Dog facts</a></li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <ul>
+                            <li><a href="#apply">Apply</a></li>
+                            <li><a href="#login">Login</a></li>
+                            <li><a href="#register">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!--<div class="vl"></div>-->
+            <div class="right">
+                <h3>DogAdopt 2024</h3>
+            </div>
+        </div>
+        <hr class="solid">
+    </div>
+</body>
+
+</html> 
