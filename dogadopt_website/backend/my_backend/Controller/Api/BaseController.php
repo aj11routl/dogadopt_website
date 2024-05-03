@@ -1,6 +1,32 @@
 <?php
+#require_once(realpath(dirname(__DIR__) . '../../JWT.php'));
+require_once PROJECT_ROOT_PATH . "JWT.php";
+
 class BaseController
 {
+    /*
+    create new jwt token
+    */
+    public function generateToken() {
+        print_r(file_exists(PROJECT_ROOT_PATH . "JWT.php"));
+        try {
+
+            $payload = [
+                'iat' => time(),
+                'iss' => 'localhost',
+                'exp' => time() + (15*60),
+                'userId' => 1
+            ];
+
+            $token = $this->JWT::encode($payload, SECRET_KEY);
+            
+            #$data = ['token' => $token];
+            #$this->returnResponse("SUCCESS", $data);
+        } catch (Exception $e) {
+            #$this->throwError(JWT_PROCESSING_ERROR, $e->getMessage());
+        }
+    }
+    
     /**
 * __call magic method.
 */

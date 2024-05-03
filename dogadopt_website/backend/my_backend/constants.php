@@ -2,12 +2,17 @@
 
 /* SECURITY */
 
-define ('SECRETE_KEY', 'ajr11');
+define ('THIS_ONE', 'ajr11');
 
 /* DATA TYPES */
 define ('BOOLEAN', '1');
 define ('INTEGER', '2');
 define ('STRING' , '3');
+
+/* ERROR DESCRIPTIONS */
+
+define('MESSAGE_SORRY', 'Something went wrong! Please contact support.');
+define('DESC_INCORRECT_PASSWORD', 'Incorrect password');
 
 /* ERROR CODES */
 
@@ -24,5 +29,6 @@ define ('JWT_PROCESSING_ERROR',					109);
 define ('AUTHORIZATION_HEADER_NOT_FOUND',		110);
 define ('SUCCESS_RESPONSE',						200);
 define ('HTTP/ 404 NOT FOUND',                  404);
+
 
 ?>

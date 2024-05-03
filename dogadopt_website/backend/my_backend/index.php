@@ -1,4 +1,7 @@
 <?php
+require_once 'JWT.php';
+use \Firebase\JWT\JWT;
+
 require __DIR__ . "/inc/bootstrap.php";
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode( '/', $uri );
@@ -23,9 +26,9 @@ if (isset($uri[5]) && isset($uri[6])) {
     }
 }
 
-require PROJECT_ROOT_PATH . "/Controller/Api/UserController.php";
+require PROJECT_ROOT_PATH . "/Controller/Api/MainController.php";
 
-$objFeedController = new UserController();
+$objFeedController = new MainController();
 if (isset($uri[7])) {
     $strMethodName = $strMethodName . $uri[7];
 }
