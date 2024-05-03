@@ -37,6 +37,13 @@ class MainController extends BaseController
                         if (password_verify($password, $user['password']) != true and $password != $user['password']) {
                             $strErrorDesc = DESC_INCORRECT_PASSWORD;
                             $strErrorHeader = 'HTTP/1.1 401 Unauthorized';
+                        } else {
+                            # call generate token function
+                            $token = $this->generateToken($user['user_id']);
+                            if ($token == null) {
+                                $strErrorDesc = $e->getMessage(). MESSAGE_SORRY;
+                                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+                            } 
                         }
                     }
                 } else {
@@ -52,12 +59,9 @@ class MainController extends BaseController
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
         
-        $token = $this->generateToken();
-        print("$token");
-        
         // send output with token
         if (!$strErrorDesc) {
-            $this->sendOutput(json_encode(array('success' => "Logged in successfully", 'token' => 'asdf')),
+            $this->sendOutput(json_encode(array('success' => "Logged in successfully", 'token' => $token)),
                 array('Content-Type: application/json',  'HTTP/1.1 200 OK')
             );
         } else {

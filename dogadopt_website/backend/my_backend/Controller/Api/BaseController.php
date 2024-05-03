@@ -1,29 +1,26 @@
 <?php
-#require_once(realpath(dirname(__DIR__) . '../../JWT.php'));
 require_once PROJECT_ROOT_PATH . "JWT.php";
+use \Firebase\JWT\JWT;
 
 class BaseController
 {
     /*
     create new jwt token
     */
-    public function generateToken() {
-        print_r(file_exists(PROJECT_ROOT_PATH . "JWT.php"));
+    public function generateToken($userId) {
         try {
-
             $payload = [
                 'iat' => time(),
                 'iss' => 'localhost',
                 'exp' => time() + (15*60),
-                'userId' => 1
+                'userId' => $userId
             ];
 
-            $token = $this->JWT::encode($payload, SECRET_KEY);
+            $token = JWT::encode($payload, SECRET_KEY, 'HS256');
             
-            #$data = ['token' => $token];
-            #$this->returnResponse("SUCCESS", $data);
+            return $token;
         } catch (Exception $e) {
-            #$this->throwError(JWT_PROCESSING_ERROR, $e->getMessage());
+            return null;
         }
     }
     

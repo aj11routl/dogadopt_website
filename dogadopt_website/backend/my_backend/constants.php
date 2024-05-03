@@ -2,7 +2,7 @@
 
 /* SECURITY */
 
-define ('THIS_ONE', 'ajr11');
+define ('SECRET_KEY', 'key');
 
 /* DATA TYPES */
 define ('BOOLEAN', '1');
