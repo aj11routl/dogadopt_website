@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rehoming and Rescue | DogAdopt</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+</script>
+<script>
+    // checks on page load whether user is already logged in or not
+    document.addEventListener("DOMContentLoaded", function() {
+        checkLoggedIn();
+    });
+
+    function checkLoggedIn() {
+        console.log("hello");
+        if (localStorage.token != (null || '')) {
+            if (confirm('You are already logged in. Continuing will sign you out.')) {
+                localStorage.setItem('token', null);
+                localStorage.setItem('userid', 0);
+            } else {
+                // Do nothing!
+                location.replace('index.html');
+            }
+        }
+    }
+
+    function login() {
+        var obj = null;
+        var errorText = document.getElementById('errorText');
+
+        var email = document.forms['loginForm']['email'].value;
+        var password = document.forms['loginForm']['password'].value;
+        console.log("hi");
+        console.log(email);
+        console.log(password);
+
+        $.ajax({
+            url: "post-login.php", //the page containing php script
+            type: "post", //request type,
+            dataType: 'json',
+            async: true,
+            data: {
+                email: email,
+                password: password,
+            },
+            success: function(result) {
+                obj = JSON.parse(result);
+            }
+        }).then(function() {
+            if (obj.token) {
+                errorText.textContent = "";
+
+                // locally store token
+                localStorage.setItem('token', obj.token);
+                localStorage.setItem('userid', obj.userid)
+                // redirect back to page user was going to (or redirect home)
+                var nextPage = localStorage.getItem('nextPage');
+                console.log(nextPage);
+                if (nextPage == '') {
+                    console.log("catch");
+                    location.replace('index.html');
+                } else {
+                    location.replace(nextPage);
+                    localStorage.setItem('nextPage', '');
+                }
+
+            } else {
+                //try login again login failed
+                if (obj.error) {
+                    errorText.textContent = obj.error;
+                }
+            }
+        });
+    }
+
+</script>
+
+<body>
+    <div class="header">
+        <div id="header-wrapper">
+            <a href="index.html">
+                <div id="logo-box">
+                    <img src="dogadopt_logo.jpg" id="logo">
+                    <h2 style="float: left; align-content: center">WebsiteName.org</h2>
+                </div>
+            </a>
+            <div id="topnav-box">
+                <div class="topnav">
+                    <div class="nav-button" onclick="location.href = 'apply.php';">
+                        Apply
+                    </div>
+                    <a href="index.html" class="active">Home</a>
+                    <a href="list-page.php">Our dogs</a>
+                    <a href="">Info</a>
+                    <a href="fun-facts.html">Fun</a>
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="section2">
+            <div class="login-section">
+
+                <h2black>Login</h2black>
+                <form name="loginForm">
+                    <input type="email" id="email" name="email" placeholder="Email" pattern="[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(\.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(\.[-a-zA-Z0-9_]+)*\.([cC][oO][mM]))(:[0-9]{1,5})?" required><br><br>
+                    <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+                    <input type="button" id="submit" name="submit" value="Submit" onclick="login()">
+                </form>
+                <p id="errorText"></p>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="footer">
+        <div class="wrapper">
+            <div class="left">
+                <h3>Sitemap</h3>
+                <div class="wrapper">
+                    <div class="left">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="list-page.html">Our dogs list</a></li>
+                            <li><a href="fun-facts.html">Dog facts</a></li>
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <ul>
+                            <li><a href="apply.php">Apply</a></li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="register.html">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="vl"></div>-->
+            <div class="right">
+                <h3>DogAdopt 2024</h3>
+            </div>
+        </div>
+        <hr class="solid">
+    </div>
+</body>
+
+</html>

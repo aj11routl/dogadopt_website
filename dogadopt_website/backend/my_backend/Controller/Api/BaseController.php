@@ -1,6 +1,9 @@
 <?php
+
 require_once PROJECT_ROOT_PATH . "JWT.php";
+require_once PROJECT_ROOT_PATH . "Key.php";
 use \Firebase\JWT\JWT;
+use \Firebase\JWT\Key;
 
 class BaseController
 {
@@ -15,12 +18,38 @@ class BaseController
                 'exp' => time() + (15*60),
                 'userId' => $userId
             ];
-
+            
             $token = JWT::encode($payload, SECRET_KEY, 'HS256');
             
             return $token;
         } catch (Exception $e) {
             return null;
+        }
+    }
+    
+    /*
+    verify token based on timestamp
+    */
+    public function verifyToken($token) {
+        # get token
+        try {
+            $decoded = JWT::decode($token, new Key(SECRET_KEY, 'HS256'));
+            $decoded = json_encode($decoded);
+            $decoded = json_decode($decoded, true);   
+        } catch (Error $e) {
+            return false;
+        }
+        
+        # convert json to array ([0]: iat, [1]: iss, [2]: exp, [3], userId)
+        $string = implode(',', $decoded);
+        $array = explode(',', $string);
+        # check token is not past expiry time
+        if (time() > $array[2]) {
+            #expired
+            return false;
+        } else {
+            #still valid
+            return true;
         }
     }
     

@@ -9,6 +9,7 @@
     --pink: #FAF5E6;
     --charcoal: #222;
     --darkgray: #5E5E5E;
+    --darkergray: #171717;
 }
 
 /* fonts */
@@ -18,7 +19,7 @@
 }
 
 h1 {
-    font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif; 
+    font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
     color: var(--yellow);
 }
 
@@ -39,14 +40,14 @@ h3 {
 }
 
 h4 {
-    font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif; 
+    font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
     font-weight: bolder;
     color: black;
     font-size: 44px;
 }
 
 h1black {
-    font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif; 
+    font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
     color: black;
 }
 
@@ -66,29 +67,130 @@ h3black {
     color: black;
 }
 
+.right > p {
+    color: white;
+}
+
 .changa-one-regular {
-  font-family: "Changa One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Changa One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .changa-one-regular-italic {
-  font-family: "Changa One", sans-serif;
-  font-weight: 400;
-  font-style: italic;
+    font-family: "Changa One", sans-serif;
+    font-weight: 400;
+    font-style: italic;
 }
 
 /* ---------------------- */
 
 * {
-  box-sizing: border-box;
-  font-family: Work Sans, sans-serif;
+    box-sizing: border-box;
+    font-family: Work Sans, sans-serif;
     letter-spacing: 1px;
 }
 
 body {
-  margin: 0;
-  font-family: Work Sans, sans-serif;
+    margin: 0;
+    font-family: Work Sans, sans-serif;
+}
+
+/* MODAL POPUP BOX */
+/* ---------------------------- */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
 }
 
 /* HEADER */
@@ -100,7 +202,8 @@ body {
     left: 0;
     width: 100%;
     text-align: center;
-    padding: 5px;  
+    padding: 5px;
+    box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 #header-wrapper {
@@ -110,6 +213,8 @@ body {
 
 #logo-box {
     height: 90px;
+    margin: 0px;
+    padding: 0px;
     float: left;
     align-content: center;
 }
@@ -119,7 +224,7 @@ body {
     width: 90px;
     float: left;
     margin: 10px;
-    background-color: var(--yellow);
+    padding: 0px;
 }
 
 #topnav-box {
@@ -153,7 +258,7 @@ body {
 
 /* Change color on hover */
 .topnav a:hover {
-  color: var(--yellow);
+    color: var(--yellow);
 }
 
 .nav-button {
@@ -209,8 +314,9 @@ body {
 /* content between header and footer */
 
 .content {
-  background-color: white;
+    background-color: white;
     padding: 0px;
+    z-index: -1;
 }
 
 .contentyellow {
@@ -239,8 +345,8 @@ body {
     border-radius: 11px;
     margin: 20px;
     position: absolute;
-    bottom:-50px;
-    left:55px;
+    bottom: -50px;
+    left: 55px;
     z-index: 9999;
     color: black;
     justify-content: space-between;
@@ -336,6 +442,15 @@ body {
     text-indent: 10px;
 }
 
+.login-section {
+    width: 100%;
+    min-height: 450px;
+    align-content: center;
+    text-align: center;
+    padding: 25px;
+    line-height: 2;
+}
+
 .list-section {
     width: 100%;
     background-color: white;
@@ -350,12 +465,15 @@ body {
     display: flex;
 }
 
+.list-section > h3black {
+    margin-top: 30px;
+}
+
 .list-card {
     box-shadow: 0 0 3px grey;
     border-radius: 8px;
     min-width: 400px;
-    min-height: 450px
-    max-width: 700px;
+    min-height: 450px max-width: 700px;
     max-height: 450px;
     margin: 30px;
     background-color: white;
@@ -383,9 +501,10 @@ body {
 .center-section {
     text-align: center;
     align-content: center;
+    min-height: 50px;
 }
 
-#fact-display-section {
+#yellow-page-section {
     min-height: 150px;
     text-align: center;
     align-content: center;
@@ -395,6 +514,11 @@ body {
 
 /* FORMS AND BUTTONS */
 /* ----------------------------- */
+
+.spaced-form {
+    line-height: 2;
+    padding: 10px;
+}
 
 .large-button {
     align-content: center;
@@ -446,6 +570,51 @@ body {
     margin: 30px;
 }
 
+input[type=email],
+input[type=password] {
+    width: 25%;
+    min-width: 250px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    width: 20%;
+    min-width: 220px;
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    background-color: var(--darkergray);
+
+}
+
+.loginbutton {
+    width: 20%;
+    min-width: 220px;
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loginbutton:hover {
+    background-color: var(--darkergray);
+}
+
 /* FOOTER */
 /* ----------------------------- */
 .footer {
@@ -495,15 +664,12 @@ li a {
 }
 
 hr.solid {
-  border-top: 1px solid gray;
+    border-top: 1px solid gray;
 }
 
 .vl {
-  border-left: 1px solid gray;
-  height: 200px;
+    border-left: 1px solid gray;
+    height: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
-
-

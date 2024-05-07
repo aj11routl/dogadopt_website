@@ -2,7 +2,7 @@
 
 /* SECURITY */
 
-define ('SECRET_KEY', 'key');
+define ('SECRET_KEY', 'thisissecretkey');
 
 /* DATA TYPES */
 define ('BOOLEAN', '1');
@@ -28,7 +28,11 @@ define ('INVALID_USER_PASSWORD'	,				108);
 define ('JWT_PROCESSING_ERROR',					109);
 define ('AUTHORIZATION_HEADER_NOT_FOUND',		110);
 define ('SUCCESS_RESPONSE',						200);
-define ('HTTP/ 404 NOT FOUND',                  404);
+
+define('CODE_UNAUTHORIZED',                     401);
+define ('CODE_NOT_FOUND',                       404);
+define ('CODE_UNPROCESSABLE_ENTITY',            422);
+define ('CODE_INTERNAL_ERROR',                  500);
 
 
 ?>

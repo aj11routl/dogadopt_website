@@ -29,6 +29,36 @@ class Database
         }
         return false;
     }
+    
+    public function insert($query = "" , $params = [])
+    {
+        try {
+            $stmt = $this->executeStatement( $query , $params );			
+            if ($stmt == true) {
+                return true;
+            } else {
+                return false;
+            }
+            $stmt->close();
+        } catch(Exception $e) {
+            throw New Exception( $e->getMessage() );
+        }
+    }
+    
+    public function delete($query = "" , $params = [])
+    {
+        try {
+            $stmt = $this->executeStatement( $query , $params );			
+            if ($stmt == true) {
+                return true;
+            } else {
+                return false;
+            }
+            $stmt->close();
+        } catch(Exception $e) {
+            throw New Exception( $e->getMessage() );
+        }
+    }
 
     private function executeStatement($query = "" , $params = [])
     {

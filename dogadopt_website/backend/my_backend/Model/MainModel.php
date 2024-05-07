@@ -1,6 +1,7 @@
 <?php
 require_once PROJECT_ROOT_PATH . "/Model/Database.php";
 
+# main model shared between all controllers
 class MainModel extends Database
 {
     
@@ -57,5 +58,26 @@ class MainModel extends Database
     public function getDogsByBreedAndSex($breed, $sex)
     {
         return $this->select("SELECT * FROM dogs WHERE breed = $breed AND sex = $sex");
+    }
+    
+    public function insertApplication($userId, $dogId) {
+        return $this->insert("INSERT INTO `applications` (`user_id`, `dog_id`) VALUES ($userId, $dogId)");
+    }
+    
+    // get applications and related dog details where user_id
+    public function getAllApplications($user_id)
+    {
+        return $this->select("SELECT applications.application_id, dogs.name, dogs.breed, dogs.colour, dogs.sex FROM dogs INNER JOIN applications ON dogs.dog_id = applications.dog_id WHERE user_id = " . $user_id . " ORDER BY applications.application_id ASC");
+    }
+    
+    public function updateDog($dogId, $breed, $colour) 
+    {
+        return $this->insert("UPDATE `dogs` SET `breed`='" . $breed . "', `colour`='" . $colour .  "' WHERE dog_id='" . $dogId . "'");
+        
+    }
+    
+    public function deleteDog($dogId)
+    {
+        return $this->delete("DELETE from dogs WHERE dog_id = " . $dogId);
     }
 }

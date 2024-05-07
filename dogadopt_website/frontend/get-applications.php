@@ -1,19 +1,8 @@
 <?php
-
-$option = $_POST['option'];
-$selection = $_POST['selection'];
         
-$url_string = 'http://localhost/dogadopt_website/backend/my_backend/index.php';
+$userId = $_POST['userid'];
 
-if ($option == "Colour") {
-    $url_string = $url_string . '/dog/colour?dogcolour=' . $selection;
-}
-if ($option == "Breed") {
-    $url_string = $url_string . '/dog/breed?dogbreed=' . $selection;
-}
-if ($option == "Sex") {
-    $url_string = $url_string . '/dog/sex?sex=' . strtolower($selection);
-}
+$url_string = 'http://localhost/dogadopt_website/backend/my_backend/index.php/application/list?userid=' . $userId;
  
 $url_string = str_replace ( ' ', '%20', $url_string);
 
