@@ -12,7 +12,7 @@
             <a href="index.html">
                 <div id="logo-box">
                     <img src="dogadopt_logo.jpg" id="logo">
-                    <h2 style="float: left; align-content: center">WebsiteName.org</h2>
+                    <h2 style="float: left; align-content: center">DogAdopt.org</h2>
                 </div>
             </a>
             <div id="topnav-box">
@@ -242,7 +242,6 @@
             <!--- displays list of dogs on search 'createCards()' -->
         </div>
     </div>
-
     <div class="footer">
         <div class="wrapper">
             <div class="left">
@@ -251,23 +250,23 @@
                     <div class="left">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="list-page.html">Our dogs list</a></li>
+                            <li><a href="list-page.php">Our dogs list</a></li>
                             <li><a href="fun-facts.html">Dog facts</a></li>
                         </ul>
                     </div>
                     <div class="right">
                         <ul>
-                            <li><a href="#apply">Apply</a></li>
-                            <li><a href="#login">Login</a></li>
-                            <li><a href="#register">Register</a></li>
+                            <li><a href="apply.php">Apply</a></li>
+                            <li><a href="login.html">Login</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-
-            <!--<div class="vl"></div>-->
             <div class="right">
                 <h3>DogAdopt 2024</h3>
+                <ul>
+                    <li><a href="admin.php">Admin operations<br>(does not require login)</a></li>
+                </ul>
             </div>
         </div>
         <hr class="solid">

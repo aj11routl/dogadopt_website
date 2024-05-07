@@ -29,8 +29,8 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var dogs = <?php echo json_encode($dogs_list) ?>;
         refreshValues();
+        populateText();
     });
 
     function refreshValues() {
@@ -91,14 +91,13 @@
     }
     
     function updateDog() {
-        var breed = document.getElementById('breed');
-        var colour = document.getElementById('colour');
-        var select = document.getElementById('dog-list-dropdown-2');
-        var dogId = select.value;
+        var breed = document.getElementById('breed').value;
+        var colour = document.getElementById('colour').value;
+        var dogId = document.getElementById('dog-list-dropdown-2').value;
         console.log(dogId);
         
         $.ajax({
-            url: "update-dog.php",
+            url: "dog-update.php",
             type: "post",
             dataType: 'json',
             async: true,
@@ -122,7 +121,7 @@
             <a href="index.html">
                 <div id="logo-box">
                     <img src="dogadopt_logo.jpg" id="logo">
-                    <h2 style="float: left; align-content: center">WebsiteName.org</h2>
+                    <h2 style="float: left; align-content: center">DogAdopt.org</h2>
                 </div>
             </a>
             <div id="topnav-box">

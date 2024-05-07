@@ -3,6 +3,7 @@
 $dog_id = $_POST['dogid'];
 $breed = $_POST['breed'];
 $colour = $_POST['colour'];
+
         
 $url_string = 'http://localhost/dogadopt_website/backend/my_backend/index.php/dog/update?dogid=' . $dog_id . '&breed=' . $breed . '&colour=' . $colour;
 

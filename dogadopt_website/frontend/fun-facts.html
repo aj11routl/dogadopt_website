@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Rehoming and Rescue | DogAdopt</title>
-<link rel="stylesheet" href="index.css">
+    <title>Rehoming and Rescue | DogAdopt</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -11,10 +12,10 @@
             <a href="index.html">
                 <div id="logo-box">
                     <img src="dogadopt_logo.jpg" id="logo">
-                    <h2 style="float: left; align-content: center">WebsiteName.org</h2>
+                    <h2 style="float: left; align-content: center">DogAdopt.org</h2>
                 </div>
             </a>
-            <div id="topnav-box">        
+            <div id="topnav-box">
                 <div class="topnav">
                     <div class="nav-button" href="login.html">
                         Login
@@ -47,61 +48,61 @@
                         display.innerHTML = "";
                         try {
                             $.ajax({
-                                    url:"get-fact.php",    //the page containing php script
-                                    type: "get",    //request type,
-                                    dataType: 'json',
-                                    async: true,
-                                    success:function(result){
-                                        fact = result['facts'];
+                                url: "get-fact.php", //the page containing php script
+                                type: "get", //request type,
+                                dataType: 'json',
+                                async: true,
+                                success: function(result) {
+                                    fact = result['facts'];
                                 }
                             }).then(function() {
                                 if (fact != null) {
                                     caption.textContent = "Did you know..?";
-                                    
+
                                     text.textContent = fact;
-                                    
+
                                 }
                             });
                         } catch {
                             text.textContent = "Sorry.. something went wrong.";
                         }
-                            display.appendChild(caption);
-                            display.appendChild(text)
+                        display.appendChild(caption);
+                        display.appendChild(text)
                     }
+
                 </script>
             </div>
         </div>
     </div>
-    
     <div class="footer">
         <div class="wrapper">
             <div class="left">
-                    <h3>Sitemap</h3>
+                <h3>Sitemap</h3>
                 <div class="wrapper">
                     <div class="left">
                         <ul>
-                            <li><a href="">Home</a></li>
-                            <li><a href="listpage.html">Our dogs list</a></li>
-                            <li><a href="#facts">Dog facts</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="list-page.php">Our dogs list</a></li>
+                            <li><a href="fun-facts.html">Dog facts</a></li>
                         </ul>
                     </div>
                     <div class="right">
                         <ul>
-                            <li><a href="#apply">Apply</a></li>
-                            <li><a href="#login">Login</a></li>
-                            <li><a href="#register">Register</a></li>
+                            <li><a href="apply.php">Apply</a></li>
+                            <li><a href="login.html">Login</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            
-            <!--<div class="vl"></div>-->
             <div class="right">
                 <h3>DogAdopt 2024</h3>
+                <ul>
+                    <li><a href="admin.php">Admin operations<br>(does not require login)</a></li>
+                </ul>
             </div>
         </div>
         <hr class="solid">
     </div>
 </body>
 
-</html> 
+</html>
